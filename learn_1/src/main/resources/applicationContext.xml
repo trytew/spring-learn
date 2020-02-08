@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--方式一-->
+    <bean id="walletDao" class="org.nelg.learn_1.dao.WalletDao"></bean>
+    <bean id="walletService" class="org.nelg.learn_1.service.WalletService">
+        <!--构造方法注入-->
+        <!--<constructor-arg name="money" value="1000"></constructor-arg>-->
+        <!--set方法注入-->
+        <property name="money" value="1001"></property>
+        <property name="myList">
+            <list>
+                <value>test1</value>
+                <value>test2</value>
+                <value>test3</value>
+            </list>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="test1" value="test1"></entry>
+                <entry key="test2" value="test2"></entry>
+                <entry key="test3" value="test3"></entry>
+            </map>
+        </property>
+        <property name="walletDao" ref="walletDao"></property>
+    </bean>
+
+    <!--方式二-->
+    <!--<bean id="instanceFactory" class="org.nelg.learn_1.factory.InstanceFactory"></bean>-->
+    <!--<bean id="walletService" factory-bean="instanceFactory" factory-method="getWalletService"></bean>-->
+
+    <!--方式三-->
+    <!--<bean id="walletService" class="org.nelg.learn_1.factory.StaticFactory" factory-method="getWalletService"></bean>-->
+</beans>
